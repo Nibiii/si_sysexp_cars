@@ -1,0 +1,741 @@
+package com.sample
+import javax.swing.JOptionPane
+import javax.swing.JFrame
+import org.kie.api.runtime.KieRuntime
+import javax.swing.JRadioButton
+import javax.swing.JPanel
+global JFrame frame
+global javax.swing.JTextArea textArea
+import java.util.ArrayList
+import java.util.List
+import java.util.Arrays;
+import java.util.ArrayList
+import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.sample.Response;
+
+rule "What classc car should I buy?"
+    when
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Reliability and convenience bore me");
+    options.add("I guess I'm Making some kind of statement about something?");
+    options.add("New cars have no soul");
+    options.add("I prefer the style");
+    options.add("Love speed, hate safety");
+    Response response = ask(frame, kcontext.getKieRuntime(), "What classc car should I buy?", options);
+    insert (response);
+end
+
+rule "What classc car should I buy? - Reliability and convenience bore me - Oh yeah? Why's that?"
+    when
+    Response(question == "What classc car should I buy?" && response == "Reliability and convenience bore me")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("I want to know how cars work");
+    options.add("I'm erotically drawn to tow trucks and freeway shoulders");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Oh yeah? Why's that?", options);
+    insert (response);
+end
+
+rule "Oh yeah? Why's that? - I want to know how cars work - So, something really simple?"
+    when
+    Response(question == "Oh yeah? Why's that?" && response == "I want to know how cars work")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Sounds good");
+    options.add("More archaic");
+    options.add("Not that archaic");
+    Response response = ask(frame, kcontext.getKieRuntime(), "So, something really simple?", options);
+    insert (response);
+end
+
+rule "So, something really simple? - Sounds good"
+    when
+    Response(question == "So, something really simple?" && response == "Sounds good")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Citroen 2CV");
+    cars.add("VW Thing");
+    cars.add("Willys Jeep");
+    cars.add("Honda Civic");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "So, something really simple? - More archaic"
+    when
+    Response(question == "So, something really simple?" && response == "More archaic")
+    then
+    print(frame, kcontext.getKieRuntime(), "Ford Model T");
+end
+
+
+rule "So, something really simple? - Not that archaic"
+    when
+    Response(question == "So, something really simple?" && response == "Not that archaic")
+    then
+    print(frame, kcontext.getKieRuntime(), "Ford Model A");
+end
+
+
+rule "Oh yeah? Why's that? - I'm erotically drawn to tow trucks and freeway shoulders - Ok. Should it be pretty quick?"
+    when
+    Response(question == "Oh yeah? Why's that?" && response == "I'm erotically drawn to tow trucks and freeway shoulders")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Yes");
+    options.add("Also really lovely");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Ok. Should it be pretty quick?", options);
+    insert (response);
+end
+
+rule "Ok. Should it be pretty quick? - Yes"
+    when
+    Response(question == "Ok. Should it be pretty quick?" && response == "Yes")
+    then
+    print(frame, kcontext.getKieRuntime(), "Lotus Elan");
+end
+
+
+rule "Ok. Should it be pretty quick? - Also really lovely"
+    when
+    Response(question == "Ok. Should it be pretty quick?" && response == "Also really lovely")
+    then
+    print(frame, kcontext.getKieRuntime(), "Alfa Romeo Giulia Super");
+end
+
+
+rule "What classc car should I buy? - I guess I'm Making some kind of statement about something? - Great, what statement?"
+    when
+    Response(question == "What classc car should I buy?" && response == "I guess I'm Making some kind of statement about something?")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("The mothership left me in Paris");
+    options.add("I live dangerously and Nader can suck it");
+    options.add("I'm a Kook. An American Kook.");
+    options.add("I'm a refugee from an alternate future with zeppelins and shit");
+    options.add("I hate people knowing what I drive");
+    options.add("I kinda wanted a motorcycle, but I have no balance");
+    options.add("I like being part of a massive automotive subculture");
+    options.add("I will only Drive Vehicles with Two distinct luggage areas");
+    options.add("I run an NYC");
+    options.add("I'm really rich but like to pretend I'm still a Hippie");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Great, what statement?", options);
+    insert (response);
+end
+
+rule "Great, what statement? - The mothership left me in Paris"
+    when
+    Response(question == "Great, what statement?" && response == "The mothership left me in Paris")
+    then
+    print(frame, kcontext.getKieRuntime(), "Citroen SM");
+end
+
+
+rule "Great, what statement? - I live dangerously and Nader can suck it"
+    when
+    Response(question == "Great, what statement?" && response == "I live dangerously and Nader can suck it")
+    then
+    print(frame, kcontext.getKieRuntime(), "Chevy Corvair");
+end
+
+
+rule "Great, what statement? - I'm a Kook. An American Kook"
+    when
+    Response(question == "Great, what statement?" && response == "I'm a Kook. An American Kook.")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("AMC Pacer");
+    cars.add("AMC Gremlin");
+    cars.add("AMC AMX");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Great, what statement? - I'm a refugee from an alternate future with zeppelins and shit"
+    when
+    Response(question == "Great, what statement?" && response == "I'm a refugee from an alternate future with zeppelins and shit")
+    then
+    print(frame, kcontext.getKieRuntime(), "Tatra T87");
+end
+
+
+rule "Great, what statement? - I hate people knowing what I drive"
+    when
+    Response(question == "Great, what statement?" && response == "I hate people knowing what I drive")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Sterling 825");
+    cars.add("Mitsubishi Starion");
+    cars.add("Isuzu I");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Great, what statement? - I kinda wanted a motorcycle, but I have no balance"
+    when
+    Response(question == "Great, what statement?" && response == "I kinda wanted a motorcycle, but I have no balance")
+    then
+    print(frame, kcontext.getKieRuntime(), "Lotus 7");
+end
+
+
+rule "Great, what statement? - I like being part of a massive automotive subculture"
+    when
+    Response(question == "Great, what statement?" && response == "I like being part of a massive automotive subculture")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("VW Beetle");
+    cars.add("BMW 2002");
+    cars.add("MGB");
+    cars.add("Datsun 240Z");
+    cars.add("Volvo 240");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Great, what statement? - I will only Drive Vehicles with Two distinct luggage areas"
+    when
+    Response(question == "Great, what statement?" && response == "I will only Drive Vehicles with Two distinct luggage areas")
+    then
+    print(frame, kcontext.getKieRuntime(), "VW Type III");
+end
+
+
+rule "Great, what statement? - I run an NYC - Themed diner in Las Vegas"
+    when
+    Response(question == "Great, what statement?" && response == "I run an NYC")
+    then
+    print(frame, kcontext.getKieRuntime(), "Themed diner in Las Vegas");
+end
+
+
+rule "Great, what statement? - I'm really rich but like to pretend I'm still a Hippie"
+    when
+    Response(question == "Great, what statement?" && response == "I'm really rich but like to pretend I'm still a Hippie")
+    then
+    print(frame, kcontext.getKieRuntime(), "VW Type 2 Microbus");
+end
+
+
+rule "What classc car should I buy? - New cars have no soul - What does soul mean to you?"
+    when
+    Response(question == "What classc car should I buy?" && response == "New cars have no soul")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Easy: Ability to drive off a pier into an estuary");
+    options.add("Synonym for weird");
+    options.add("Technically Novel");
+    options.add("Soul means the car had an honest job, like a cop or cabbie");
+    options.add("It means riding in it is like Sitting on a Sofa");
+    options.add("It means The car is often starring in movies");
+    options.add("It could mean pure evil?");
+    options.add("Soul is the spirits of 43 dead clowns haunting the car");
+    options.add("Soul is the ability to go a million miles with SU Carbs and Lucas Electrics");
+    Response response = ask(frame, kcontext.getKieRuntime(), "What does soul mean to you?", options);
+    insert (response);
+end
+
+rule "What does soul mean to you? - Easy: Ability to drive off a pier into an estuary"
+    when
+    Response(question == "What does soul mean to you?" && response == "Easy: Ability to drive off a pier into an estuary")
+    then
+    print(frame, kcontext.getKieRuntime(), "Amphicar");
+end
+
+
+rule "What does soul mean to you? - Synonym for weird"
+    when
+    Response(question == "What does soul mean to you?" && response == "Synonym for weird")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("BMW Isetta");
+    cars.add("Messerschmidt Kabinroller");
+    cars.add("Subaru 360");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "What does soul mean to you? - Technically Novel - Like what?"
+    when
+    Response(question == "What does soul mean to you?" && response == "Technically Novel")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Instead of pistons, some metal Hamantaschen");
+    options.add("Can burn cooking oil");
+    options.add("Engine in the wrong place (maybe cooled by wrong stuff)");
+    options.add("They thought they were building a plane");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Like what?", options);
+    insert (response);
+end
+
+rule "Like what? - Instead of pistons, some metal Hamantaschen"
+    when
+    Response(question == "Like what?" && response == "Instead of pistons, some metal Hamantaschen")
+    then
+    print(frame, kcontext.getKieRuntime(), "Mazda RX");
+end
+
+
+rule "Like what? - Can burn cooking oil"
+    when
+    Response(question == "Like what?" && response == "Can burn cooking oil")
+    then
+    print(frame, kcontext.getKieRuntime(), "Mercedes Benz 300TD");
+end
+
+
+rule "Like what? - Engine in the wrong place (maybe cooled by wrong stuff)"
+    when
+    Response(question == "Like what?" && response == "Engine in the wrong place (maybe cooled by wrong stuff)")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Porsche 912");
+    cars.add("Renault Alpine");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Like what? - They thought they were building a plane"
+    when
+    Response(question == "Like what?" && response == "They thought they were building a plane")
+    then
+    print(frame, kcontext.getKieRuntime(), "Saab 96");
+end
+
+
+rule "What does soul mean to you? - Soul means the car had an honest job, like a cop or cabbie"
+    when
+    Response(question == "What does soul mean to you?" && response == "Soul means the car had an honest job, like a cop or cabbie")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Chevy Caprice");
+    cars.add("Dodge Monaco");
+    cars.add("Ford Crown Vic");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "What does soul mean to you? - It means riding in it is like Sitting on a Sofa - A huge, fast FWD Sofa?"
+    when
+    Response(question == "What does soul mean to you?" && response == "It means riding in it is like Sitting on a Sofa")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Yes");
+    options.add("No");
+    Response response = ask(frame, kcontext.getKieRuntime(), "A huge, fast FWD Sofa?", options);
+    insert (response);
+end
+
+rule "A huge, fast FWD Sofa? - Yes"
+    when
+    Response(question == "A huge, fast FWD Sofa?" && response == "Yes")
+    then
+    print(frame, kcontext.getKieRuntime(), "Olds Toronado");
+end
+
+
+rule "A huge, fast FWD Sofa? - No"
+    when
+    Response(question == "A huge, fast FWD Sofa?" && response == "No")
+    then
+    print(frame, kcontext.getKieRuntime(), "Lincoln Town Car");
+end
+
+
+rule "What does soul mean to you? - It means The car is often starring in movies"
+    when
+    Response(question == "What does soul mean to you?" && response == "It means The car is often starring in movies")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Delorean DMC");
+    cars.add("VW Beetle");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "What does soul mean to you? - It could mean pure evil?"
+    when
+    Response(question == "What does soul mean to you?" && response == "It could mean pure evil?")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Plymouth fury");
+    cars.add("Buick GNX");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "What does soul mean to you? - Soul is the spirits of 43 dead clowns haunting the car"
+    when
+    Response(question == "What does soul mean to you?" && response == "Soul is the spirits of 43 dead clowns haunting the car")
+    then
+    print(frame, kcontext.getKieRuntime(), "Nash Netropolitan");
+end
+
+
+rule "What does soul mean to you? - Soul is the ability to go a million miles with SU Carbs and Lucas Electrics"
+    when
+    Response(question == "What does soul mean to you?" && response == "Soul is the ability to go a million miles with SU Carbs and Lucas Electrics")
+    then
+    print(frame, kcontext.getKieRuntime(), "Volvo P1800");
+end
+
+
+rule "What classc car should I buy? - I prefer the style - Ok, what kind of style?"
+    when
+    Response(question == "What classc car should I buy?" && response == "I prefer the style")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("African Dictator");
+    options.add("I love corvairs but live in a 3/4 scale universe");
+    options.add("Like Buck Roger's Boss's dad");
+    options.add("I love chrome and loud shirts");
+    options.add("Really slow cars that look fast");
+    options.add("I love brass and lanterns");
+    options.add("I can only drive cars that are museum");
+    options.add("Working class hero, also beer");
+    options.add("Classic German with a touch of pedal confusion");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Ok, what kind of style?", options);
+    insert (response);
+end
+
+rule "Ok, what kind of style? - African Dictator"
+    when
+    Response(question == "Ok, what kind of style?" && response == "African Dictator")
+    then
+    print(frame, kcontext.getKieRuntime(), "Mercedes");
+end
+
+
+rule "Ok, what kind of style? - I love corvairs but live in a 3/4 scale universe"
+    when
+    Response(question == "Ok, what kind of style?" && response == "I love corvairs but live in a 3/4 scale universe")
+    then
+    print(frame, kcontext.getKieRuntime(), "NSU Prinz");
+end
+
+
+rule "Ok, what kind of style? - Like Buck Roger's Boss's dad"
+    when
+    Response(question == "Ok, what kind of style?" && response == "Like Buck Roger's Boss's dad")
+    then
+    print(frame, kcontext.getKieRuntime(), "'59 Cadillac Eldorado");
+end
+
+
+rule "Ok, what kind of style? - I love chrome and loud shirts"
+    when
+    Response(question == "Ok, what kind of style?" && response == "I love chrome and loud shirts")
+    then
+    print(frame, kcontext.getKieRuntime(), "'57 Chevy Bel Air");
+end
+
+
+rule "Ok, what kind of style? - Really slow cars that look fast"
+    when
+    Response(question == "Ok, what kind of style?" && response == "Really slow cars that look fast")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Opel GT");
+    cars.add("VW Karmann Ghia");
+    cars.add("Renault Floride");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Ok, what kind of style? - I love brass and lanterns"
+    when
+    Response(question == "Ok, what kind of style?" && response == "I love brass and lanterns")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Anything Pre WWI");
+    cars.add("Maybe a Packard?");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Ok, what kind of style? - I can only drive cars that are museum - worthy"
+    when
+    Response(question == "Ok, what kind of style?" && response == "I can only drive cars that are museum")
+    then
+    print(frame, kcontext.getKieRuntime(), "worthy");
+end
+
+
+rule "Ok, what kind of style? - Working class hero, also beer - Ford Mustang"
+    when
+    Response(question == "Ok, what kind of style?" && response == "Working class hero, also beer")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Ford Mustang");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Ford Mustang", options);
+    insert (response);
+end
+
+rule "Ford Mustang - Ford Mustang - What do you want from tires?"
+    when
+    Response(question == "Ford Mustang" && response == "Ford Mustang")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Noise and smoke");
+    options.add("Noise, smoke, and the trailer park's undying respect");
+    Response response = ask(frame, kcontext.getKieRuntime(), "What do you want from tires?", options);
+    insert (response);
+end
+
+rule "What do you want from tires? - Noise and smoke"
+    when
+    Response(question == "What do you want from tires?" && response == "Noise and smoke")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Ford Mustang Mach I");
+    cars.add("Chevy C3 Corvette");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "What do you want from tires? - Noise, smoke, and the trailer park's undying respect"
+    when
+    Response(question == "What do you want from tires?" && response == "Noise, smoke, and the trailer park's undying respect")
+    then
+    print(frame, kcontext.getKieRuntime(), "Fox Body Mustang");
+end
+
+
+rule "Ok, what kind of style? - Working class hero, also beer - Does your hat say you'd rather push a Chevy?"
+    when
+    Response(question == "Ok, what kind of style?" && response == "Working class hero, also beer")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("So it does, friend");
+    options.add("Dammit, I lost my hat");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Does your hat say you'd rather push a Chevy?", options);
+    insert (response);
+end
+
+rule "Does your hat say you'd rather push a Chevy? - So it does, friend"
+    when
+    Response(question == "Does your hat say you'd rather push a Chevy?" && response == "So it does, friend")
+    then
+    print(frame, kcontext.getKieRuntime(), "Chevy Camaro");
+end
+
+
+rule "Does your hat say you'd rather push a Chevy? - Dammit, I lost my hat"
+    when
+    Response(question == "Does your hat say you'd rather push a Chevy?" && response == "Dammit, I lost my hat")
+    then
+    print(frame, kcontext.getKieRuntime(), "AMC AMX");
+end
+
+
+rule "Ok, what kind of style? - Classic German with a touch of pedal confusion"
+    when
+    Response(question == "Ok, what kind of style?" && response == "Classic German with a touch of pedal confusion")
+    then
+    print(frame, kcontext.getKieRuntime(), "Audi 100");
+end
+
+
+rule "What classc car should I buy? - Love speed, hate safety - Real speed or just feels speedy?"
+    when
+    Response(question == "What classc car should I buy?" && response == "Love speed, hate safety")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("I love speed and money");
+    options.add("I have a death wish");
+    options.add("Fake is fine");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Real speed or just feels speedy?", options);
+    insert (response);
+end
+
+rule "Real speed or just feels speedy? - I love speed and money - Great, who are you?"
+    when
+    Response(question == "Real speed or just feels speedy?" && response == "I love speed and money")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Some kind of Duke and I rally");
+    options.add("My goal is to drive my childhood bedroom posters");
+    options.add("I have a weird fetish where I like people asking \"Is it a replica?\"");
+    Response response = ask(frame, kcontext.getKieRuntime(), "Great, who are you?", options);
+    insert (response);
+end
+
+rule "Great, who are you? - Some kind of Duke and I rally"
+    when
+    Response(question == "Great, who are you?" && response == "Some kind of Duke and I rally")
+    then
+    print(frame, kcontext.getKieRuntime(), "Lancia Stratos");
+end
+
+
+rule "Great, who are you? - My goal is to drive my childhood bedroom posters"
+    when
+    Response(question == "Great, who are you?" && response == "My goal is to drive my childhood bedroom posters")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Lamborghini Countach");
+    cars.add("Ferrari 250 GTO");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Great, who are you? - I have a weird fetish where I like people asking \"Is it a replica?\""
+    when
+    Response(question == "Great, who are you?" && response == "I have a weird fetish where I like people asking \"Is it a replica?\"")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("AC Cobra");
+    cars.add("Porsche 356 Speedster");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "Real speed or just feels speedy? - I have a death wish - How do you want to go?"
+    when
+    Response(question == "Real speed or just feels speedy?" && response == "I have a death wish")
+    then
+    ArrayList<String> options = new ArrayList<>();
+    options.add("Crushed by V8 in tiny space");
+    options.add("Electrocuted by wiper switch");
+    options.add("Blaze of glory");
+    options.add("Car, tree");
+    options.add("Run out of talent, off cliff");
+    options.add("Fast and cheap");
+    Response response = ask(frame, kcontext.getKieRuntime(), "How do you want to go?", options);
+    insert (response);
+end
+
+rule "How do you want to go? - Crushed by V8 in tiny space"
+    when
+    Response(question == "How do you want to go?" && response == "Crushed by V8 in tiny space")
+    then
+    print(frame, kcontext.getKieRuntime(), "Sunbeam Tiger");
+end
+
+
+rule "How do you want to go? - Electrocuted by wiper switch"
+    when
+    Response(question == "How do you want to go?" && response == "Electrocuted by wiper switch")
+    then
+    print(frame, kcontext.getKieRuntime(), "Jaguar E");
+end
+
+
+rule "How do you want to go? - Blaze of glory"
+    when
+    Response(question == "How do you want to go?" && response == "Blaze of glory")
+    then
+    print(frame, kcontext.getKieRuntime(), "Ferrari Testarossa");
+end
+
+
+rule "How do you want to go? - Car, tree"
+    when
+    Response(question == "How do you want to go?" && response == "Car, tree")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Camaro Iroc");
+    cars.add("Plymouth Road Runner");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+rule "How do you want to go? - Run out of talent, off cliff"
+    when
+    Response(question == "How do you want to go?" && response == "Run out of talent, off cliff")
+    then
+    print(frame, kcontext.getKieRuntime(), "Porsche Spyder");
+end
+
+
+rule "How do you want to go? - Fast and cheap"
+    when
+    Response(question == "How do you want to go?" && response == "Fast and cheap")
+    then
+    print(frame, kcontext.getKieRuntime(), "Dodge Omni GLH");
+end
+
+
+rule "Real speed or just feels speedy? - Fake is fine"
+    when
+    Response(question == "Real speed or just feels speedy?" && response == "Fake is fine")
+    then
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Datsun 510");
+    cars.add("Mini Cooper");
+    cars.add("Mk1 VW Golf GTI");
+    cars.add("Honda CRX");
+    printMultiple(frame, kcontext.getKieRuntime(), cars);
+end
+
+
+function void print(JFrame frame, KieRuntime runtime, String polecane) {
+    final JPanel panel = new JPanel();
+	panel.add(new JLabel(polecane));
+    JOptionPane.showMessageDialog(frame, panel);
+}
+
+function void printMultiple(JFrame frame, KieRuntime runtime, ArrayList polecane) {
+    final JPanel panel = new JPanel();
+    panel.setLayout(new GridLayout(0, 1));
+    ArrayList<String> cars = polecane;
+    for (String car : cars) {
+    	panel.add(new JLabel(car));
+    	panel.add(new JLabel("<html><br></html>"));
+    }
+    JOptionPane.showMessageDialog(frame, panel);
+}
+
+function Response ask(JFrame frame, KieRuntime runtime, String question, ArrayList responses) {
+
+    class Listener implements ItemListener {
+        private Response response;
+        private String chosen;
+        public Listener(Response response, String chosen) {
+            this.response = response;
+            this.chosen = chosen;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent event) {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                response.setResponse(chosen);
+            }
+        }
+    }
+    Response response = new Response(question, (String) responses.get(0));
+
+    final JPanel panel = new JPanel(new GridLayout(0, 1));
+    panel.add(new JLabel(question));
+
+    ArrayList < JRadioButton > buttonList = new ArrayList < > ();
+
+    for (int i = 0; i < responses.size(); i++) {
+        String text = (String) responses.get(i);
+        JRadioButton button = new JRadioButton(text);
+        Listener listener = new Listener(response, text);
+        button.addItemListener(listener);
+        buttonList.add(button);
+    }
+
+    buttonList.get(0).setSelected(true);
+    response.setResponse((String) responses.get(0));
+
+    ButtonGroup buttons = new ButtonGroup();
+    for (int i = 0; i < buttonList.size(); i++) {
+        buttons.add(buttonList.get(i));
+        panel.add(buttonList.get(i));
+    }
+    Object[] options = {
+        "Proceed"
+    };
+    if (JOptionPane.showConfirmDialog(frame, panel, "Question", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE) < 0) {
+        response.setResponse("Quit");
+    }
+
+    return response;
+}
